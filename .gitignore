@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+*.egg
+# Node modules
+node_modules/
+# Logs
+logs/
+*.log
+# Environment variables
+.env
+# Build output
+/dist
+# IDE files
+.idea/
+.vscode/
+
+uv.lock

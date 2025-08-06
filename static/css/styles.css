@@ -1,0 +1,601 @@
+/* CSS for Order Processing System - FastAPI Demo */
+
+body {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1d23;
+    color: #e1e5e9;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 320px;
+    background: #2d3139;
+    border-right: 1px solid #3f434a;
+    padding: 1.5rem;
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+.container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #3b82f6;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.subtitle {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.sidebar h2 {
+    color: #3b82f6;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.logo {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #3b82f6;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #3f434a;
+}
+
+.control-group {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #252932;
+    border-radius: 8px;
+    border: 1px solid #3f434a;
+}
+
+.control-group h3 {
+    color: #e1e5e9;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #9ca3af;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #3f434a;
+    border-radius: 4px;
+    background: #1a1d23;
+    color: #e1e5e9;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+    flex: 1;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+.btn-secondary {
+    background: #6b7280;
+    color: white;
+    flex: 1;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #4b5563;
+}
+
+.btn-accent {
+    background: #10b981;
+    color: white;
+    width: 100%;
+}
+
+.btn-accent:hover:not(:disabled) {
+    background: #059669;
+}
+
+.btn-process {
+    background: #f59e0b;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+}
+
+.btn-process:hover:not(:disabled) {
+    background: #d97706;
+}
+
+.btn-process-selected {
+    background: #8b5cf6;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-process-selected:hover:not(:disabled) {
+    background: #7c3aed;
+}
+
+.btn-close {
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+}
+
+.btn-close:hover:not(:disabled) {
+    background: #dc2626;
+}
+
+.btn-close-selected {
+    background: #ef4444;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-close-selected:hover:not(:disabled) {
+    background: #dc2626;
+}
+
+.btn-deselect-all {
+    background: #6b7280;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-deselect-all:hover:not(:disabled) {
+    background: #4b5563;
+}
+
+.btn-pagination {
+    background: #374151;
+    color: #9ca3af;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin: 0 0.125rem;
+    min-width: 60px;
+}
+
+.btn-pagination:hover:not(:disabled) {
+    background: #4b5563;
+    color: #e1e5e9;
+}
+
+.btn-pagination:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.pagination-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #2d3139;
+    border-radius: 8px;
+    border: 1px solid #3f434a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.pagination-info {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin: 0;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label {
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+.stat-value {
+    color: #3b82f6;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.status-indicator {
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-indicator.connected {
+    background: #065f46;
+    color: #10b981;
+}
+
+.status-indicator.disconnected {
+    background: #7f1d1d;
+    color: #ef4444;
+}
+
+.status-indicator.error {
+    background: #7f1d1d;
+    color: #ef4444;
+}
+
+.status-message {
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-message.success {
+    background: #065f46;
+    color: #10b981;
+    border: 1px solid #10b981;
+}
+
+.status-message.error {
+    background: #7f1d1d;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+.status-message.info {
+    background: #1e3a8a;
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+}
+
+.table-container {
+    background: #2d3139;
+    border-radius: 8px;
+    border: 1px solid #3f434a;
+    overflow-x: auto;
+}
+
+.table-actions {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.orders-table th {
+    background: #252932;
+    color: #9ca3af;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid #3f434a;
+    white-space: nowrap;
+}
+
+.orders-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #3f434a;
+    vertical-align: middle;
+}
+
+.order-row {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.order-row:hover {
+    background: #252932;
+}
+
+.order-row.selected {
+    background: #1e40af !important;
+    color: #e1e5e9;
+}
+
+.order-row.selected:hover {
+    background: #1d4ed8 !important;
+}
+
+.order-id {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: #3b82f6;
+    font-weight: 600;
+}
+
+.customer-name {
+    font-weight: 500;
+}
+
+.status-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.status-pending {
+    background: #fbbf24;
+    color: #92400e;
+}
+
+.status-badge.status-processing {
+    background: #3b82f6;
+    color: white;
+}
+
+.status-badge.status-shipped {
+    background: #10b981;
+    color: white;
+}
+
+.status-badge.status-delivered {
+    background: #059669;
+    color: white;
+}
+
+.status-badge.status-cancelled {
+    background: #ef4444;
+    color: white;
+}
+
+.status-badge.status-done {
+    background: #059669;
+    color: white;
+}
+
+.priority-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.priority-badge.priority-low {
+    background: #374151;
+    color: #9ca3af;
+}
+
+.priority-badge.priority-medium {
+    background: #1e40af;
+    color: #3b82f6;
+}
+
+.priority-badge.priority-high {
+    background: #dc2626;
+    color: #fca5a5;
+}
+
+.priority-badge.priority-critical {
+    background: #7c2d12;
+    color: #fed7aa;
+}
+
+.details {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.timestamp, .processed-time {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.actions {
+    text-align: center;
+    width: 100px;
+}
+
+/* Custom Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-container {
+    background: #2d3139;
+    border: 1px solid #3f434a;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow: hidden;
+    animation: modalSlideIn 0.2s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    border-bottom: 1px solid #3f434a;
+    background: #252932;
+}
+
+.modal-title {
+    margin: 0;
+    color: #e1e5e9;
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-message {
+    color: #e1e5e9;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+    white-space: pre-line;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    border-top: 1px solid #3f434a;
+    background: #252932;
+}
+
+.modal-footer .btn {
+    min-width: 80px;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        order: 2;
+    }
+
+    .main-content {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .orders-table {
+        font-size: 0.75rem;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 0.5rem;
+    }
+
+    .details {
+        max-width: 150px;
+    }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Processing System - FastAPI Demo</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="logo">
+                <span>📦 Order Processing System</span>
+            </div>
+
+            <h2>Controls</h2>
+
+            <div class="control-group">
+                <h3>Order Stream Controls</h3>
+                <div class="form-group">
+                    <label>Update Frequency (seconds):</label>
+                    <input type="number" id="frequency" value="2" min="0.5" max="10" step="0.5">
+                </div>
+                <div class="form-group">
+                    <label>Max Orders:</label>
+                    <input type="number" id="maxOrders" value="500" min="1" max="1000">
+                </div>
+                <div class="button-group">
+                    <button id="startBtn" class="btn btn-primary">Start Stream</button>
+                    <button id="stopBtn" class="btn btn-secondary" disabled>Stop Stream</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Batch Operations</h3>
+                <div class="form-group">
+                    <label>Batch Size:</label>
+                    <input type="number" id="batchSize" value="20" min="1" max="100">
+                </div>
+                <button id="generateBatchBtn" class="btn btn-accent">Generate Batch</button>
+            </div>
+
+            <div class="control-group">
+                <h3>Pagination Settings</h3>
+                <div class="form-group">
+                    <label>Orders per page:</label>
+                    <select id="pageSize">
+                        <option value="10">10</option>
+                        <option value="25" selected>25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Statistics</h3>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Orders:</span>
+                        <span id="totalOrders" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Pending:</span>
+                        <span id="pendingCount" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Processing:</span>
+                        <span id="processingCount" class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Connection Status</h3>
+                <div id="connectionStatus" class="status-indicator">Disconnected</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="container">
+                <h1>Order Processing Dashboard</h1>
+                <p class="subtitle">Real-time order processing using Python generators and WebSockets</p>
+
+                <div id="status" class="status-message"></div>
+
+                <!-- Process Selected Button Above Table -->
+                <div class="table-actions">
+                    <button id="processSelectedBtn" class="btn btn-process-selected" disabled>Process Selected</button>
+                    <button id="closeSelectedBtn" class="btn btn-close-selected" disabled>Close Selected</button>
+                    <button id="deselectAllBtn" class="btn btn-deselect-all" disabled>Deselect All</button>
+                </div>
+
+                <div class="table-container">
+                    <table id="ordersTable" class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Details</th>
+                                <th>Created</th>
+                                <th>Processing Started</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Orders will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Controls Below Table -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        <span id="paginationInfo">Page 1 of 1 (0 orders)</span>
+                    </div>
+                    <div class="pagination-controls">
+                        <button id="firstPageBtn" class="btn btn-pagination" disabled>First</button>
+                        <button id="prevPageBtn" class="btn btn-pagination" disabled>Previous</button>
+                        <button id="nextPageBtn" class="btn btn-pagination" disabled>Next</button>
+                        <button id="lastPageBtn" class="btn btn-pagination" disabled>Last</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal -->
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">⚠️ Confirm Action</h3>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage" class="modal-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="modalCancelBtn" class="btn btn-secondary">Cancel</button>
+                <button id="modalConfirmBtn" class="btn btn-close">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app_fresh.js"></script>
+</body>
+</html>

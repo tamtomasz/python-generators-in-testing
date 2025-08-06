@@ -1,12 +1,12 @@
 [project]
 name = "generators-in-testing"
 version = "0.1.0"
-description = "Add your description here"
+description = "Order Processing System with FastAPI and WebSockets"
 requires-python = ">=3.13"
 dependencies = [
-    "black>=25.1.0",
-    "pytest>=8.4.0",
-    "pytest-playwright>=0.7.0",
     "fastapi>=0.104.0",
     "uvicorn[standard]>=0.24.0",
+    "websockets>=12.0",
+    "jinja2>=3.1.0",
+    "python-multipart>=0.0.6",
 ]
